@@ -1,2 +1,23 @@
-# react-to-electron-action
-This is a Github Action that takes an existing React Web App and converts it to a standalone Electron App
+# Hello world javascript action
+
+**The process to create a Github Action is documented [here](https://help.github.com/en/actions/building-actions/creating-a-javascript-action).**
+
+This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+
+## Inputs
+
+### `who-to-greet`
+
+**Required** The name of the person to greet. Default `"World"`.
+
+## Outputs
+
+### `time`
+
+The time we greeted you.
+
+## Example usage
+
+uses: actions/hello-world-javascript-action@v1
+with:
+  who-to-greet: 'Mona the Octocat'
