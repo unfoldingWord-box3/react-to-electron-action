@@ -7,7 +7,7 @@ try {
   console.log(`App name is ${appName}!`);
   const appId = core.getInput('appid');
   console.log(`App id is ${appId}!`);
-  const path = core.getInput('public-url');
+  const path = core.getInput('path');
   console.log(`Path is ${path}!`);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
