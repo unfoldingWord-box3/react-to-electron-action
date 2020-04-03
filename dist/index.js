@@ -1509,7 +1509,7 @@ try {
 
     //
     // Step 4 - initialize capacitor
-    const npxCapInit = `npx cap init --web-dir build ${appname} ${appid}`;
+    const npxCapInit = `npx cap init --web-dir build ${appName} ${appId}`;
     logger("Begin: "+npxCapInit);
     exec(npxCapInit);
 
