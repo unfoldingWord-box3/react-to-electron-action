@@ -22,9 +22,14 @@ There are but few constraints in the application - see details below. Once those
 
 1. Due to this [issue](https://github.com/ionic-team/capacitor/issues/2604) it is required that the application provide a replacement `package.json` to use for the Electron application. **NOTE! this is not the `package.json` that is used by the application itself.** An example is provided in Appendix A. At present, this must be located at `./public/electron-package.json`. Modify the example and add to your repository.
 
-4. There must be a `build` script in the application `package.json` that will create a build folder with all resolved, compiled code. At present, that entry must be exactly: `"electron:build": "react-scripts build"`. An example `scripts` section from a `package.json` is provided in Appendix B.
+1. There must be a `build` script in the application `package.json` that will create a build folder with all resolved, compiled code. At present, that entry must be exactly: `"electron:build": "react-scripts build"`. An example `scripts` section from a `package.json` is provided in Appendix B.
 
-5. Electron Builder requires image that is *at least* 256x256 for the splash screen. If your application is initialized in the normal React way, then there will be an `android-chrome-512x512.png` image in `./public`. It can be used if needed.
+1. Electron Builder requires image that is *at least* 256x256 for the splash screen. If your application is initialized in the normal React way, then there will be an `android-chrome-512x512.png` image in `./public`. It can be used if needed.
+
+1. This action **must** be preceded by the following actions:
+- a check out action.
+- a setup node action.
+- 
 
 ## Inputs
 
@@ -32,13 +37,9 @@ There are but few constraints in the application - see details below. Once those
 
 **Required** The name of application. Same as in `package.json`.
 
-**Default** `"My-App"`.
-
 ### `appid`
 
 **Required** The id of the application in reverse URI domain style.
-
-**Default** `org.my-app`
 
 ### `path`
 
@@ -151,7 +152,7 @@ This is the scripts section from an application that has added the required `ele
 
 # Appendix Z - Scripted Basis
 
-This actions was developed after the following script was developed and working well. The version below was a second iteration for a second project.
+This action was developed after the following script was developed and working well. The version below was a second iteration for a second project.
 
 `build-electron.sh`
 ```
@@ -193,6 +194,8 @@ cd $CLONETARGET
 
 ROOT=`pwd`
 echo Root folder of project is $ROOT
+
+echo +++++++++++++++++++++++++++++++++++++++++ Begin Scope of Action
 echo Get dependencies with yarn
 echo +-------------------------------------------------------------+
 
@@ -279,6 +282,7 @@ echo Run packager
 echo +-------------------------------------------------------------+
 
 $ROOT/electron/node_modules/.bin/electron-builder
+echo +++++++++++++++++++++++++++++++++++++++++ End Scope of Action
 
 echo +-------------------------------------------------------------+
 echo Done at `date`
