@@ -48,45 +48,52 @@ const exec = (cmd, cwd) =>
 try {
     // get the inputs defined in action metadata file
     const appName = core.getInput('appname');
-    logger(`App name is ${appName}!`);
+    logger(`App name is ${appName}`);
     const appId = core.getInput('appid');
-    logger(`App id is ${appId}!`);
+    logger(`App id is ${appId}`);
     const path = core.getInput('path');
-    logger(`Path is ${path}!`);
+    logger(`Path is ${path}`);
+    const version = core.getInput('version');
+    logger(`Version is ${version}`);
 
     // are any missing (all are required)
     const requiredMessage = " is required!";
     if ( appName === undefined || appName === null ) {
         throw ("appName" + requiredMessage)
     }
-
-    if ( appId === undefined || appName === null ) {
+    if ( appId === undefined || appId === null ) {
         throw ("appId" + requiredMessage)
     }
-
-    if ( path === undefined || appName === null ) {
+    if ( path === undefined || path === null ) {
+        throw ("path" + requiredMessage)
+    }
+    if ( version === undefined || version === null ) {
         throw ("path" + requiredMessage)
     }
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)
-    logger(`The event payload: ${payload}`);
+    //logger(`The event payload: ${payload}`);
     
     // set env variables for use later on
     core.setOutput("appname", appName);
     core.setOutput("appid", appId);
     core.setOutput("path", path);
 
+    logger(`App name is ${appName}`);
+    logger(`App Id is ${appId}`);
+    logger(`Path is ${path}`);
+
     // create artifact and asset filenames
     if ( getPlatform() === 'linux' ) {
         core.setOutput("artifactname",
-            `${appname}_${version}amd64.deb`
+            `${appName}_${version}amd64.deb`
         );
         core.setOutput("assetname",
-            `${appname}_${version}amd64.deb`
+            `${appName}_${version}amd64.deb`
         );
     } else if ( getPlatform() === 'windows' ) {
         core.setOutput("artifactname",
-            `${appname} Setup ${version}.exe}`
+            `${appName} Setup ${version}.exe}`
         );
         core.setOutput("assetname",
             `${appname} Setup ${version}.exe}`
