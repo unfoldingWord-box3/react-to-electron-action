@@ -1465,10 +1465,6 @@ try {
     core.setOutput("appid", appId);
     core.setOutput("path", path);
 
-    logger(`App name is ${appName}`);
-    logger(`App Id is ${appId}`);
-    logger(`Path is ${path}`);
-
     // create artifact and asset filenames
     if ( getPlatform() === 'linux' ) {
         core.setOutput("artifactname",
@@ -1496,31 +1492,37 @@ try {
     //
     // Step 1 - Install dependencies
     const yarnInstall = 'yarn install';
+    logger("Begin: "+yarnInstall);
     exec(yarnInstall);
 
     //
     // Step 2 - build the app (expect it in 'build' folder)
     const yarnElectronBuild = 'yarn electron:build';
+    logger("Begin: "+yarnElectronBuild);
     exec(yarnElectronBuild);
 
     //
     // Step 3 - add capacitor
     const yarnAddCapacitor = 'yarn add --dev @capacitor/core @capacitor/cli'
+    logger("Begin: "+yarnAddCapacitor);
     exec(yarnAddCapacitor);
 
     //
     // Step 4 - initialize capacitor
     const npxCapInit = `npx cap init --web-dir build ${appname} ${appid}`;
+    logger("Begin: "+npxCapInit);
     exec(npxCapInit);
 
     //
     // Step 5 npx cap add electron
     const npxCapAddElectron = 'npx cap add electron';
+    logger("Begin: "+npxCapAddElectron);
     exec(npxCapAddElectron);
 
     //
     // Step 6 copy splash png to splash assets
     const cpSplash = 'cp ./public/splash.png ./electron/splash_assets/splash.png';
+    logger("Begin: "+cpSplash);
     exec(cpSplash);
 
     //
@@ -1530,21 +1532,25 @@ try {
         + `-e "s#/static#./static#g"`
         + `< index.html > x && mv x index.html`
     ;
+    logger("Begin: "+sed);
     exec(sed);
 
     // 
     // Step 8 copy index.js to app/
     const cpindex = `cd ./electron && cp index.js app`;
+    logger("Begin: "+cpindex);
     exec(cpindex);
 
     //
     // Step 9 install electron and electron builder
     const addEb = `cd ./electron && yarn add --dev electron electron-builder` ;
+    logger("Begin: "+addEb);
     exec(addEb);
 
     //
     // Step 10 run the builder
     const ebCmd = `cd ./electron && ./node_modules/.bin/electron-builder`;
+    logger("Begin: "+ebCmd);
     exec(ebCmd);
 
 } catch (error) {
