@@ -141,9 +141,9 @@ try {
 
     //
     // Step 7 fix index html
-    const sed = `cd ./electron/app && sed -e "s#/favicon#./favicon#g"`
-        + `-e "s#/manifest#./manifest#g"`
-        + `-e "s#/static#./static#g"`
+    const sed = `cd ./electron/app && sed -e "s#/favicon#./favicon#g" `
+        + `-e "s#/manifest#./manifest#g" `
+        + `-e "s#/static#./static#g" `
         + `< index.html > x && mv x index.html`
     ;
     logger("Begin: "+sed);
