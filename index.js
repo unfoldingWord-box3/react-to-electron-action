@@ -82,10 +82,10 @@ try {
     // create artifact and asset filenames
     if ( getPlatform() === 'linux' ) {
         core.setOutput("artifactname",
-            `${appName}_${version}amd64.deb`
+            `${appName}_${version}_amd64.deb`
         );
         core.setOutput("assetname",
-            `${appName}_${version}amd64.deb`
+            `${appName}_${version}_amd64.deb`
         );
     } else if ( getPlatform() === 'windows' ) {
         core.setOutput("artifactname",
