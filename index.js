@@ -135,7 +135,7 @@ try {
 
     //
     // Step 6 copy electron package to electron
-    const cpEPackage = './public/electron-package.json ./electron/package.json';
+    const cpEPackage = 'cp ./public/electron-package.json ./electron/package.json';
     logger("Begin: "+cpEPackage);
     exec(cpEPackage);
 
