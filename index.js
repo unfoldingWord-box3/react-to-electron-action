@@ -134,13 +134,19 @@ try {
     exec(npxCapAddElectron);
 
     //
-    // Step 6 copy splash png to splash assets
+    // Step 6 copy electron package to electron
+    const cpEPackage = './public/electron-package.json ./electron/package.json';
+    logger("Begin: "+cpEPackage);
+    exec(cpEPackage);
+
+    //
+    // Step 7 copy splash png to splash assets
     const cpSplash = 'cp ./public/splash.png ./electron/splash_assets/splash.png';
     logger("Begin: "+cpSplash);
     exec(cpSplash);
 
     //
-    // Step 7 fix index html
+    // Step 8 fix index html
     const sed = `cd ./electron/app && sed -e "s#/favicon#./favicon#g" `
         + `-e "s#/manifest#./manifest#g" `
         + `-e "s#/static#./static#g" `
@@ -150,19 +156,19 @@ try {
     exec(sed);
 
     // 
-    // Step 8 copy index.js to app/
+    // Step 9 copy index.js to app/
     const cpindex = `cd ./electron && cp index.js app`;
     logger("Begin: "+cpindex);
     exec(cpindex);
 
     //
-    // Step 9 install electron and electron builder
+    // Step 10 install electron and electron builder
     const addEb = `cd ./electron && yarn add --dev electron electron-builder` ;
     logger("Begin: "+addEb);
     exec(addEb);
 
     //
-    // Step 10 run the builder
+    // Step 11 run the builder
     const ebCmd = `cd ./electron && ./node_modules/.bin/electron-builder`;
     logger("Begin: "+ebCmd);
     exec(ebCmd);
