@@ -1478,14 +1478,14 @@ try {
             `${appName} Setup ${version}.exe}`
         );
         core.setOutput("assetname",
-            `${appname} Setup ${version}.exe}`
+            `${appName} Setup ${version}.exe}`
         );
     } else if ( getPlatform() === 'mac' ) {
         core.setOutput("artifactname",
-            `${appname}-${version}.dmg`
+            `${appName}-${version}.dmg`
         );
         core.setOutput("assetname",
-            `${appname}-${version}.dmg`
+            `${appName}-${version}.dmg`
         );
     } 
     
@@ -1535,10 +1535,13 @@ try {
     // Step 8 fix index html
     if ( path !== '' ) {
         const removePath = `cd ./electron/app && `
-        + `sed -e "s#/${path}/favicon#/favicon#g" `
-        + `-e "s#/${path}/manifest#/manifest#g" `
-        + `-e "s#/${path}/static#/static#g" `
-        + `< index.html > x && mv x index.html`
+            + `sed -e "s#/${path}/favicon#/favicon#g" `
+            + `-e "s#/${path}/manifest#/manifest#g" `
+            + `-e "s#/${path}/static#/static#g" `
+            + `< index.html > x && mv x index.html`
+        ;
+        logger("Begin: "+removePath);
+        exec(removePath);
     }
     const sed = `cd ./electron/app && `
         + `sed -e "s#/favicon#./favicon#g" `
