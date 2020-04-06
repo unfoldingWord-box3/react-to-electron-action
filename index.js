@@ -89,10 +89,10 @@ try {
         );
     } else if ( getPlatform() === 'windows' ) {
         core.setOutput("artifactname",
-            `${appName} Setup ${version}.exe}`
+            `${appName} Setup ${version}.exe`
         );
         core.setOutput("assetname",
-            `${appName} Setup ${version}.exe}`
+            `${appName} Setup ${version}.exe`
         );
     } else if ( getPlatform() === 'mac' ) {
         core.setOutput("artifactname",
