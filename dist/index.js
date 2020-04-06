@@ -1454,7 +1454,7 @@ try {
         throw ("path" + requiredMessage)
     }
     if ( version === undefined || version === null ) {
-        throw ("path" + requiredMessage)
+        throw ("version" + requiredMessage)
     }
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)
@@ -1533,7 +1533,15 @@ try {
 
     //
     // Step 8 fix index html
-    const sed = `cd ./electron/app && sed -e "s#/favicon#./favicon#g" `
+    if ( path !== '' ) {
+        const removePath = `cd ./electron/app && `
+        + `sed -e "s#/${path}/favicon#/favicon#g" `
+        + `-e "s#/${path}/manifest#/manifest#g" `
+        + `-e "s#/${path}/static#/static#g" `
+        + `< index.html > x && mv x index.html`
+    }
+    const sed = `cd ./electron/app && `
+        + `sed -e "s#/favicon#./favicon#g" `
         + `-e "s#/manifest#./manifest#g" `
         + `-e "s#/static#./static#g" `
         + `< index.html > x && mv x index.html`

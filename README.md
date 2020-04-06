@@ -24,7 +24,7 @@ There are but few constraints in the application - see details below. Once those
 
 1. There must be a `build` script in the application `package.json` that will create a build folder with all resolved, compiled code. At present, that entry must be exactly: `"electron:build": "react-scripts build"`. An example `scripts` section from a `package.json` is provided in Appendix B.
 
-1. Electron Builder requires image that is *at least* 256x256 for the splash screen. If your application is initialized in the normal React way, then there will be an `android-chrome-512x512.png` image in `./public`. It can be used if needed.
+1. Electron Builder requires image that is *at least* 256x256 for the splash screen. If your application is initialized in the normal React way, then there will be an `android-chrome-512x512.png` image in `./public`. It can be used if needed. Whatever image you wish, place it into the `./public` folder with the name `splash.png`.
 
 1. This action **must** be preceded by the following actions:
 - a check out action.

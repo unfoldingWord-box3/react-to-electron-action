@@ -1,13 +1,29 @@
 name: 'React Web to Electron'
 description: 'Converts a React Web App to an Electron App'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  appname:  # id of input
+    description: 'name of application'
     required: true
-    default: 'World'
+  appid:  
+    description: 'id of application in reverse domain style'
+    required: true
+  path:  
+    description: 'path portion of homepage; can be empty string'
+    required: true
+  version: 
+    description: 'version, semver format; must match a tag/release'
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  appname:  
+    description: 'name of application'
+  appid: 
+    description: 'id of application in reverse domain style'
+  path:  
+    description: 'id of application in reverse domain style'
+  artifactname:  
+    description: 'artifact filename to attach to tag/release'
+  assettname:  
+    description: 'asset name given to attached artifact'
 runs:
   using: 'node12'
   main: 'dist/index.js'
