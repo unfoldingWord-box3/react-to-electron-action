@@ -1,13 +1,19 @@
 #!/bin/sh
-if [ "$1x" == "x" ]; then
+SEMVER=$1
+MSG=$2
+EXTRA=$3
+
+if [[ -z "$SEMVER" ]]; then
     echo No semver provided
     exit
 fi
-if [ "$2x" == "x" ]; then
+
+if [[ -z "$MSG" ]]; then
     echo No commit message provided
     exit
 fi
-if [ "$3x" != "x" ]; then
+
+if [[ ! -z "$EXTRA" ]]; then
     echo Extra args provided
     exit
 fi
