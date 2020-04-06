@@ -41,7 +41,7 @@ const exec = (cmd, cwd) =>
     execSync(cmd, { 
         encoding: "utf8", 
         stdio: "inherit", 
-        shell: "/bin/sh",
+        shell: "bash",
         cwd 
 });
 
