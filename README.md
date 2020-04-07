@@ -42,11 +42,33 @@ and then followed by an upload action to attach the artifacts to the release/tag
 
 **Required** The id of the application in reverse URI domain style.
 
+### `version`
+
+**Required** The version of the application used for the release/tag.
+
+**NOTE** when the version is changed, here are the things that must be done:
+1. update the version in `build-electron.json`:
+```json
+  "version": "1.0.1",
+```
+1. update this version parameter:
+```yml
+        with:
+          appname: 'rrouter'
+          appid: 'io.github.mandolyte'
+          path: 'rrouter'
+          version: '1.0.1'
+```
+1. set the tag for the commit and push it:
+```sh
+git commit -a -m "misc"
+git tag v1.0.1
+git push && git push --tags
+```
+
 ### `path`
 
 **Required** The version (in semver format).
-
-### `version`
 
 This is the path portion of the "homepage" field in the application's `package.json`. 
 
