@@ -1530,6 +1530,7 @@ try {
     const cpSplash = 'cp ./public/splash.png ./electron/splash_assets/splash.png';
     logger("Begin: "+cpSplash);
     exec(cpSplash);
+    // TODO: remove splash.gif!
 
     //
     // Step 8 fix index html
@@ -1566,7 +1567,7 @@ try {
 
     //
     // Step 11 run the builder
-    const ebCmd = `cd ./electron && ./node_modules/.bin/electron-builder`;
+    const ebCmd = `cd ./electron && yarn dist`;
     logger("Begin: "+ebCmd);
     exec(ebCmd);
 
