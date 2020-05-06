@@ -254,15 +254,13 @@ jobs:
           overwrite: true
 ```
 
-```
-
 
 # Appendix Z - Scripted Basis
 
 This action was developed after the following script was developed and working well. The version below was a second iteration for a second project.
 
 `build-electron.sh`
-```
+```sh
 #!/bin/sh
 
 CLONETARGET="build-electron"
